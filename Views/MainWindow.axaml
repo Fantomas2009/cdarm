@@ -1,0 +1,77 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CADARM.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        x:Class="CADARM.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="CADARM">
+
+     <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+
+<StackPanel>
+    <Border  
+      Background="Blue">
+      <TextBlock Margin="20,10"
+         FontSize="40" 
+         HorizontalAlignment="Left"
+         VerticalAlignment="Center"
+         Text="CADArm"
+         FontWeight="Bold"
+         Foreground="white">
+      </TextBlock>
+    </Border>  
+
+    <SplitView IsPaneOpen="{Binding IsPaneOpen}"
+			   OpenPaneLength="200"
+			   CompactPaneLength="53"
+			   DisplayMode="CompactInline"
+			   Background="Blue"
+			   PaneBackground="Blue"
+			   MinHeight="1000">
+		
+        <SplitView.Pane >
+			<StackPanel Spacing="5"
+						Margin="5">
+				<Button Command="{Binding TriggerPaneCommand}" 
+						Background="white"
+						Width="43"
+						CornerRadius="10">
+					<PathIcon Data="{StaticResource lineHorizontal3Regular}"></PathIcon>
+				</Button>
+				<ListBox ItemsSource="{Binding Items}" 
+						 SelectedItem="{Binding SelectedListItem}"
+						 CornerRadius="10">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type vm:ListItemTemplate}">
+							<StackPanel Spacing="15" Orientation="Horizontal">
+								<PathIcon Data="{Binding ListItemIcon}"/>
+								<TextBlock Text="{Binding Label}"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+			<Border CornerRadius="12 0 0 0"
+					Background="#ecf3ff">
+				<TransitioningContentControl Content="{Binding CurrentPage}"/>
+			</Border>
+        </SplitView.Content>
+    </SplitView>
+	 
+  </StackPanel>
+  
+ 
+  
+
+
+</Window>

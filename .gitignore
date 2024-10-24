@@ -1,0 +1,15 @@
+# Exclure le dossier de fichiers temporaires de Visual Studio
+.vs/
+
+# Exclure les résultats de compilation
+bin/
+obj/
+
+# Exclure les fichiers utilisateur et de solution spécifiques à Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Exclure d'autres fichiers temporaires
+*.log

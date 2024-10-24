@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:CADARM.ViewModels"
+             mc:Ignorable="d"
+             d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CADARM.Views.HomePageView"
+             x:DataType="vm:HomePageViewModel">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:HomePageViewModel/>
+	</Design.DataContext>
+
+	 
+
+	<!-- Le DataContext est implicitement HomePageViewModel avec x:DataType -->
+	<Grid>
+
+		<StackPanel Margin="20">
+			<Border BorderBrush="LightGray"
+					CornerRadius="10"
+					BorderThickness="1"
+					Background="White">
+				<StackPanel VerticalAlignment="Top">
+				<TextBlock Margin="10"
+						   FontWeight="Bold"
+						   FontSize="20"
+                           HorizontalAlignment="Left">
+					Projets
+					
+				</TextBlock>
+					
+				</StackPanel>
+				
+			</Border>
+		</StackPanel>
+		<!-- Le bouton pour créer un projet -->
+		<Button Margin="20 80"
+                Width="200"
+                Height="150"
+                CornerRadius="25"
+                BorderBrush="Blue"
+                BorderThickness="3"
+                Background="White"
+                VerticalAlignment="Top"
+                Command="{Binding ShowCreateProjectFormCommand}">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+				<TextBlock Text="+" FontSize="48" HorizontalAlignment="Center" />
+				<TextBlock Text="Nouveau Projet"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Foreground="Gray"/>
+				
+			</StackPanel>
+			
+		</Button>
+	 
+		<!-- Le ContentControl qui affichera dynamiquement le formulaire -->
+		<TransitioningContentControl Content="{Binding CurrentContent}">
+			<TransitioningContentControl.PageTransition>
+				<CrossFade Duration="0:00:00.250" />
+			</TransitioningContentControl.PageTransition>
+	 
+		</TransitioningContentControl>
+			 
+		 
+		 
+	</Grid>
+ 
+
+</UserControl>

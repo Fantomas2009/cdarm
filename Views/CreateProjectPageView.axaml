@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:CADARM.ViewModels"
+             mc:Ignorable="d" 
+			 d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CADARM.Views.CreateProjectPageView"
+			 x:DataType="vm:CreateProjectPageViewModel">
+
+	 
+
+
+
+	<Grid >
+
+		<Border Background="#40000000"> 
+			<Border.Effect>
+				<BlurEffect Radius="15"/>
+			</Border.Effect>
+		</Border>
+		<!-- Fond flou -->
+		 
+
+		<!-- Contenu du formulaire -->
+		<Border 
+				BorderBrush="Blue"
+				BorderThickness="3"
+				CornerRadius="10" Padding="" 
+				HorizontalAlignment="Center" 
+				VerticalAlignment="Center"
+				Background="White">
+			 
+			<StackPanel >
+				<Border CornerRadius="10 10 15 20">
+			<StackPanel Margin="20">
+				<TextBlock Text="Créer un nouveau projet" 
+						   FontSize="18" 
+						   FontWeight="Bold" 
+						   Margin="0,0,0,10" />
+
+				<!-- Numéro du projet -->
+				<TextBlock Text="Numéro du projet" />
+				<TextBox Text="{Binding ProjectNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+				<!-- Nom du projet -->
+				<TextBlock Text="Nom du projet" Margin="0,10,0,0" />
+				<TextBox Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged}" />
+
+				<!-- Norme utilisée -->
+				<TextBlock Text="Norme utilisée" Margin="0,10,0,0" />
+				<ComboBox SelectedItem="{Binding UsedStandard, UpdateSourceTrigger=PropertyChanged}">
+					<ComboBoxItem Content="SIA 260"/>
+					<!-- Vous pouvez ajouter d'autres normes ici -->
+				</ComboBox>
+
+				<!-- Chemin d'accès du projet -->
+				<TextBlock Text="Chemin d'accès du projet" Margin="0,10,0,0" />
+				<StackPanel Orientation="Horizontal">
+					<TextBox Text="{Binding AccessPath}" Width="300"/>
+					<Button Content="Choisir"
+							Command="{Binding AccessPath, UpdateSourceTrigger=PropertyChanged}"
+							Margin="5,0,0,0" />
+				</StackPanel>
+				</StackPanel>
+				</Border>
+
+				<Border Background="Blue"
+						CornerRadius="12"
+						Margin="5">
+				<StackPanel Orientation="Horizontal"
+							HorizontalAlignment="Right"
+							Margin="0 5 5 5">
+					<Button Content="Annuler"
+							Name="CancelButton"
+							Click="OnCancelButtonClick"
+							Margin="0,0,10,0"
+							Background="white"
+							CornerRadius="10"/>
+					<Button Content="Créer"
+							Command="{Binding CreateProjectCommand} "
+							Background="White"
+							CornerRadius="10"/>
+							</StackPanel>
+				</Border>
+				
+			</StackPanel>
+		</Border>
+	 
+	</Grid>
+</UserControl>
