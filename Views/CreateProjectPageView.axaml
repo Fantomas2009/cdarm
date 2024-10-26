@@ -59,7 +59,7 @@
 				<StackPanel Orientation="Horizontal">
 					<TextBox Text="{Binding AccessPath}" Width="300"/>
 					<Button Content="Choisir"
-							Command="{Binding AccessPath, UpdateSourceTrigger=PropertyChanged}"
+							Command="{Binding BrowseCommand}"
 							Margin="5,0,0,0" />
 				</StackPanel>
 				</StackPanel>

@@ -90,19 +90,13 @@ namespace CADARM.ViewModels
         private readonly Window window;
 
         // Constructeur
-        public CreateProjectPageViewModel(Window window)
-        {
-            this.window = window;
-
-            // Initialisation des commandes
-            CreateProjectCommand = new RelayCommand(CreateProject, () => true);
-            BrowseCommand = new RelayCommand(async () => await BrowseFolder());
-        }
-
         public CreateProjectPageViewModel(CreateProjectPageView createProjectPageView)
         {
             this.createProjectPageView = createProjectPageView;
+            CreateProjectCommand = new RelayCommand(CreateProject, () => true);
+            BrowseCommand = new RelayCommand(async () => await BrowseFolder(), () => true);
         }
+
 
         // Méthode pour créer le projet
         private void CreateProject()
